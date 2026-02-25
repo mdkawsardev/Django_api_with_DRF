@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import *
-# These urls patterns are function based
+# These urls patterns are class based
 urlpatterns = [
-    path('api/comment', comment_list),
-    path('edit_delete/<int:pk>/', edit_delete)
+    path('student_data/', Student_List.as_view()),
+    path('student_data/<int:pk>', Edit_Students.as_view())
 ]
