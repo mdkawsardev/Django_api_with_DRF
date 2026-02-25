@@ -5,6 +5,7 @@ from .models import *
 from rest_framework import status
 from .serializers import CommentSerializer
 # Create your views here.
+# These operations are function based.
 @api_view(['GET', 'POST'])
 def comment_list(request):
     if request.method == "GET":
