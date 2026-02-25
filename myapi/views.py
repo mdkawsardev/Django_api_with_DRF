@@ -19,3 +19,20 @@ def comment_list(request):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['PUT', 'DELETE'])
+def edit_delete(request, pk):
+    try:
+        get_data = Comments.objects.get(id=pk)
+    except Comments.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    if request.method == "PUT":
+        serializer = CommentSerializer(get_data, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'status': 200, 'all_data': serializer.data})
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == "DELETE":
+        get_data.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
