@@ -8,12 +8,10 @@ from rest_framework.views import APIView
 # Create your views here.
 # These operations are class based.
 class Student_List(APIView):
-    
     def get(self, request, format=None):
         all_data = Comments.objects.all()
         serializer = CommentSerializer(all_data, many=True)
         return Response({'status': 200, 'all_students': serializer.data})
-    
     def post(self, request, format=None):
         serializer = CommentSerializer(data=request.data)
         if serializer.is_valid():
