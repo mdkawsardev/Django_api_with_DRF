@@ -35,7 +35,4 @@ class Edit_Students(APIView):
             serializer.save()
             return Response({'status': 200, 'msg': 'Data updated successfully!', 'all_students': serializer.data})
         return Response(status=status.HTTP_400_BAD_REQUEST)
-    def delete(self, request, pk, format=None):
-        get_data = self.get_id(pk)
-        get_data.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+    
