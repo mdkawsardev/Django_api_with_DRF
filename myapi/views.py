@@ -10,6 +10,8 @@ from rest_framework.views import APIView
 # Create your views here.
 # These operations are class based.
 class Student_List(APIView):
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
     def get(self, request, format=None):
         all_data = Comments.objects.all()
         serializer = CommentSerializer(all_data, many=True)
